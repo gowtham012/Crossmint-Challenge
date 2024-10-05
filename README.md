@@ -38,7 +38,7 @@ Build_Megaverse processes the goal map and creates the required celestial object
 
 ##### 1. Clone the repository:
 ```
-https://github.com/gowtham012/Crossmint-Challenge.git
+git clone https://github.com/gowtham012/Crossmint-Challenge.git
 cd Crossmint-Challenge
 ```
 
