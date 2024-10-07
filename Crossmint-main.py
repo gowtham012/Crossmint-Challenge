@@ -31,7 +31,8 @@ class MegaverseAPI:
         self.session = requests.Session()
         retries = Retry(total=3,  # Retry up to 3 times
                         backoff_factor=1,  # Wait 1 second between retries
-                        status_forcelist=[500, 502, 503, 504])  # Retry on server errors
+                        status_forcelist=[429, 500, 502, 503, 504],
+                        allowed_methods=["HEAD", "GET", "OPTIONS", "POST"])  # Retry on server errors
         adapter = HTTPAdapter(max_retries=retries)
 
         #mount adapter for both https and http requests
@@ -59,7 +60,8 @@ class MegaverseAPI:
     
     def post_object(self, object_type, row, column, **kwargs):
     
-        """A generic function to post any celestial object (Polyanets, Soloons, Comeths) to the API, consolidating logic for all objects into one function to avoid duplication. 
+        """A generic function to post any celestial object (Polyanets, Soloons, Comeths) to the API, 
+        consolidating logic for all objects into one function to avoid duplication. 
         Each object's creation is managed by the Build_Megaverse class."""
 
     
@@ -74,6 +76,9 @@ class MegaverseAPI:
 
         except requests.exceptions.RequestException as e:
             logging.error(f"Error creating {object_type} at ({row}, {column}): {e}")
+
+
+
 
 
 class Build_Megaverse:
@@ -103,11 +108,13 @@ class Build_Megaverse:
                     direction = object_type.split('_')[0]
                     self.api_client.post_object("comeths", row, column, direction=direction)
                 
-                time.sleep(1)  # To avoid too many API requests in a short time
+                time.sleep(0.3)  # To avoid too many API requests in a short time
 
 
 def main():
     # Set up API client
+    # Start timing
+    start_time = time.time()
     candidate_id = "fccfd8da-ffec-4bf2-a1c7-8770ab1a7a76"
     api_client = MegaverseAPI(candidate_id)
     
@@ -120,6 +127,11 @@ def main():
     # Process the map and create the required objects
     builder = Build_Megaverse(api_client)
     builder.process_map(goal_map)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Total execution time: {elapsed_time:.2f} seconds")
+    logging.info(f"Total execution time: {elapsed_time:.2f} seconds")
+
 
 if __name__ == "__main__":
     main()
