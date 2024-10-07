@@ -53,6 +53,19 @@ pip install urllib3
  python Crossmint-main.py
 ```
 
+
+#### Note
+
+I tried implementing both multithreading with dedicated workers, but I didn't achieve an optimal solution and encountered some warnings about the workers. The code is now error-free, and the time taken is the same as when I used multithreading.
+
+#### Images
+![Alt Without Multithreading](https://drive.google.com/file/d/1IoNNJGaI9dfHoT6uTMduYyyfS4nb9Hl3/view?usp=sharing)
+
+![Alt With Multithreading](https://drive.google.com/file/d/1YoaagisP5Rhw0vhtUUJnFuE7-KMtE8bW/view?usp=sharing)
+
+![Alt Final Map](https://drive.google.com/file/d/1Ui7jMB6ZrH_SxaosE4zF4z9ddKx-uqeE/view?usp=sharing)
+
+
 ### Contact
 Please let me know if you have any questions regarding the task.
 Email: gsollet1@binghamton.edu
