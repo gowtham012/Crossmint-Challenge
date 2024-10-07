@@ -59,10 +59,10 @@ pip install urllib3
 I tried implementing both multithreading with dedicated workers, but I didn't achieve an optimal solution and encountered some warnings about the workers. The code is now error-free, and the time taken is the same as when I used multithreading.
 
 ### Images
-#### Without Multithreading
+#### With Multithreading
 <img width="1017" alt="Screenshot 2024-10-07 at 10 45 35 am" src="https://github.com/user-attachments/assets/ae435630-f236-49d8-86bf-6f9364a012b2">
 
-#### With Multithreading
+#### Without Multithreading
 <img width="1017" alt="Screenshot 2024-10-07 at 10 46 00 am" src="https://github.com/user-attachments/assets/8ed81300-e900-46e4-a4fa-1830ccb405e9">
 
 #### Final Map
